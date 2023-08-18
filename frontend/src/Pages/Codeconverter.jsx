@@ -1,6 +1,7 @@
 import { Box, Button, Heading } from "@chakra-ui/react"
 import Editor from "@monaco-editor/react"
 import { useRef } from "react"
+import "../CSS/code.css"
 import { useState } from "react"
 import axios from "axios"
 const files={
@@ -43,8 +44,11 @@ export const CodeConverter=()=>{
         editorref.current=editor
     }
     function getvalue(){
-        if(editorref.current.getValue()=='' || select==""){
+        if(select===""){
             alert("Please select any Language to convert")
+        }
+        else if(editorref.current.getValue()===''){
+            alert("Put code to convert")
         }
         else{
             let obj={
@@ -95,12 +99,13 @@ export const CodeConverter=()=>{
                 setload(false)})
             .catch((err)=>console.log(err))
     }
-    return <Box background={'linear-gradient(315deg, #063465 44%, rgba(9,30,73,1) 100%)'} textAlign={'center'} color={'white'}>
+    return <Box background={'linear-gradient(315deg, #063465 44%, rgba(9,30,73,1) 100%)'} textAlign={'center'} color={'white'} overflow={"hidden"}>
+        <br/>
         <Heading as={'h1'} padding={'1%'} fontFamily={'serif'}>Code Converter</Heading>
-        
-        <Box display={'flex'} justifyContent={'space-evenly'} >
-            <Box w={'48%'} background={'#242323'} height={'100vh'}>
-                <Box display={'flex'} >
+        <br/>
+        <Box className="contain">
+            <Box className="boxone" background={'#242323'} height={'100vh'}>
+                <Box className="button">
                 <button onClick={()=>setfilename("script.py")} style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>Switch to python</button>
                 <button onClick={()=>setfilename("javascript")} style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>Switch to JavaScript</button>
                 <button onClick={()=>setfilename("java")} style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>Switch to Java</button>
@@ -120,8 +125,9 @@ export const CodeConverter=()=>{
                 defaultValue={file.defaultValue}
                 />
             </Box>
-            <Box  w={'48%'} height={'100vh'} overflow={'scroll'} background={'#242323'} overflowX={'hidden'}>
-            <Box display={'flex'} >
+            <br/>
+            <Box className="boxtwo" height={'90.5vh'}  background={'#242323'} >
+            <Box className="button">
                 <button onClick={handleoutput} style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>Get Output</button>
                 <button onClick={getvalue} style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>Convert</button>
                 <select onChange={(e)=>setselect(e.target.value)}  style={{backgroundColor:'grey',padding:'0px 5px',border:'1px solid black'}}>

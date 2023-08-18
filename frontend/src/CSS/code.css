@@ -1,0 +1,48 @@
+.contain{
+  display: flex;
+  justify-content: space-evenly;  
+}
+.boxone{
+    width: 48%;
+}
+.boxtwo{
+    width: 48%;
+}
+.button{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+@media screen and (max-width:1315px){
+    .contain{
+        display: flex;
+        flex-direction:column;
+        justify-content: space-evenly;  
+        align-items: center;
+      }
+      .boxone{
+        width: 90%;
+       
+    } 
+    .boxtwo{
+        width: 90%;
+    }
+}
+@media screen and (max-width:680px){
+    .contain{
+        display: flex;
+        flex-direction:column;
+        justify-content: space-evenly;  
+        align-items: center;
+      }
+      .boxone{
+        width: 100%;
+       
+    } 
+    .boxtwo{
+        width: 100%;
+    }
+    .button{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+}
